@@ -14,14 +14,18 @@ import {
 } from "@/components/ui/dialog"
 
 
-const fromSchema = z.object({
+const formSchema = z.object({
 	name : z.string().min(1, {
-		message: "Server name is"
+		message: "Server name is required"
+	}),
+	imageUrl : z.string().min(1, {
+		message : "Server Image is required"
 	})
 })
 export const InitialModal = () => {
 
 	const form = useForm({
+		resolver : zodResolver(formSchema),
 		defaultValues:{
 			name :"",
 			imageUrl : "",
